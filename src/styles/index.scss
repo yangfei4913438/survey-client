@@ -1,0 +1,19 @@
+/** 这将注入Tailwind的基本样式和任何由插件注册的基本样式。*/
+@tailwind base;
+/** 这将注入Tailwind的组件类和任何由插件注册的组件类。*/
+@tailwind components;
+/** 这将注入Tailwind的实用类和任何由插件注册的实用类 */
+@tailwind utilities;
+
+
+// 自定义样式初始化
+@import 'normalize.css';
+@import "sanitize.css";
+
+@layer base {
+  // 消除 tailwindcss 对 antd 图标位置的影响
+  .ant-typography {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+  }
+}

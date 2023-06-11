@@ -5,6 +5,11 @@
 /.pnp
 .pnp.js
 
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
+
 # testing
 /coverage
 

@@ -2,7 +2,7 @@ import PageWrapper from '@/components/PageWrapper';
 import { getQuestionById } from '@/services/question';
 import { getComponent } from '@/components/surveyComponents';
 import { Button, Form, Input } from 'antd';
-import { formDataTypes } from '@/consts';
+import { formDataTypes, SURVEY_ID } from '@/consts';
 import { useRouter } from 'next/router';
 import { postAnswer } from '@/services/answer';
 
@@ -58,14 +58,10 @@ export default function Question(props: InitProps) {
       .filter((c) => formDataTypes.includes(c.type))
       .map((c) => c.fe_id);
 
-    const v = form.getFieldsValue();
-    const list = Object.entries(v);
-    const data: any = {};
-    list.forEach(([k, v]) => {
-      if (validIds.includes(k)) {
-        data[k] = v;
-      }
-    });
+    const fv = form.getFieldsValue();
+    const data = Object.fromEntries(
+      Object.entries(fv).filter(([k, _]) => validIds.includes(k) || k === SURVEY_ID)
+    );
 
     await postAnswer(data)
       .then((res) => {
@@ -75,7 +71,7 @@ export default function Question(props: InitProps) {
           router.replace('/fail');
         }
       })
-      .catch((e) => {
+      .catch(() => {
         router.replace('/fail');
       });
   };
@@ -83,7 +79,7 @@ export default function Question(props: InitProps) {
   return (
     <PageWrapper title={title} desc={desc} js={js} css={css}>
       <Form form={form} onFinish={onFinish}>
-        <Form.Item name='sruveyId' initialValue={id} hidden>
+        <Form.Item name={SURVEY_ID} initialValue={id} hidden>
           <Input type={'hidden'} />
         </Form.Item>
 

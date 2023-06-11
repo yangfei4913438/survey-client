@@ -9,6 +9,9 @@ export const editorComponentTypes = {
   checkbox: 'editor_checkbox',
 };
 
+// 问卷id
+export const SURVEY_ID = 'survey_id';
+
 // 可以被提交数据的字段类型
 export const formDataTypes = [
   editorComponentTypes.input,

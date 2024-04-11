@@ -10,7 +10,7 @@ export const editorComponentTypes = {
 };
 
 // 问卷id
-export const SURVEY_ID = 'survey_id';
+export const QuestionID = 'questionId';
 
 // 可以被提交数据的字段类型
 export const formDataTypes = [

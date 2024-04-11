@@ -1,9 +1,10 @@
-const HOST = 'http://localhost:6001'; // Mock 的 host
+const HOST = 'http://localhost:3005';
 
 export async function get(url: string) {
   const res = await fetch(`${HOST}${url}`, {
+    method: 'get',
     headers: {
-      Authorization: 'Bearer token',
+      'Content-Type': 'application/json',
     },
   });
   return res.json();
@@ -15,7 +16,6 @@ export async function post(url: string, body: any) {
     body: JSON.stringify(body),
     headers: {
       'Content-Type': 'application/json',
-      Authorization: 'Bearer token',
     },
   });
   return res.json();

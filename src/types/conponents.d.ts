@@ -110,6 +110,6 @@ interface SurveyData {
 
 interface InitProps {
   errno: number;
-  msg?: string;
+  message?: string;
   data: SurveyData;
 }

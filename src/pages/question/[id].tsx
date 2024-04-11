@@ -2,12 +2,12 @@ import PageWrapper from '@/components/PageWrapper';
 import { getQuestionById } from '@/services/question';
 import { getComponent } from '@/components/surveyComponents';
 import { Button, Form, Input } from 'antd';
-import { formDataTypes, SURVEY_ID } from '@/consts';
+import { formDataTypes, QuestionID } from '@/consts';
 import { useRouter } from 'next/router';
 import { postAnswer } from '@/services/answer';
 
 export default function Question(props: InitProps) {
-  const { errno, data, msg = '' } = props;
+  const { errno, data, message = '' } = props;
   const [form] = Form.useForm();
   const router = useRouter();
 
@@ -16,7 +16,7 @@ export default function Question(props: InitProps) {
     return (
       <PageWrapper title='错误'>
         <h1>错误</h1>
-        <p>{msg}</p>
+        <p>{message}</p>
       </PageWrapper>
     );
   }
@@ -59,11 +59,17 @@ export default function Question(props: InitProps) {
       .map((c) => c.fe_id);
 
     const fv = form.getFieldsValue();
-    const data = Object.fromEntries(
-      Object.entries(fv).filter(([k, _]) => validIds.includes(k) || k === SURVEY_ID)
+
+    const { questionId, ...rest } = Object.fromEntries(
+      Object.entries(fv).filter(([k, _]) => validIds.includes(k) || k === QuestionID)
     );
 
-    await postAnswer(data)
+    const answer = {
+      questionId,
+      answerList: Object.entries(rest as Object).map(([k, v]) => ({componentFeId: k, value: v }))
+    }
+
+    await postAnswer(answer)
       .then((res) => {
         if (res.errno === 0) {
           router.replace('/success');
@@ -79,7 +85,7 @@ export default function Question(props: InitProps) {
   return (
     <PageWrapper title={title} desc={desc} js={js} css={css}>
       <Form form={form} onFinish={onFinish}>
-        <Form.Item name={SURVEY_ID} initialValue={id} hidden>
+        <Form.Item name={QuestionID} initialValue={id} hidden>
           <Input type={'hidden'} />
         </Form.Item>
 
@@ -109,6 +115,8 @@ export async function getServerSideProps(context: any) {
 
   // 根据 id 获取问卷数据
   const data = await getQuestionById(id);
+
+  console.log('data', data);
 
   return {
     props: data,

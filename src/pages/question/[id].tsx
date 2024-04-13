@@ -66,8 +66,11 @@ export default function Question(props: InitProps) {
 
     const answer = {
       questionId,
-      answerList: Object.entries(rest as Object).map(([k, v]) => ({componentFeId: k, value: v }))
-    }
+      answerList: Object.entries(rest as Object).map(([k, v]) => ({
+        componentFeId: k,
+        value: typeof v === 'string' ? v : v.join(','),
+      })),
+    };
 
     await postAnswer(answer)
       .then((res) => {

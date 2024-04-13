@@ -3,35 +3,33 @@
 低代码问卷项目，答题端（C端）
 
 - 设计端（B端）
-    [survey](https://github.com/yangfei4913438/survey)
+  [survey](https://github.com/yangfei4913438/survey)
 
 - 服务端
-  开发中。。。
+  [survey-server](https://github.com/yangfei4913438/survey-server)
 
 #### 运行方法
 
-- 答题端（C端）
-> mock 服务和设计端用的同一个，所以要预览答题端的效果，必须要先启动一下设计端的 mock 服务
+##### 1、启动服务端
 
 ```bash
+# 安装依赖
+yarn
 
-yarn dev
-
+# 运行开发服务
+yarn start:dev
 ```
 
-- 设计端（B端）
+##### 2、启动设计端（B端）
 
 ```bash
-
-# 代码
+yarn
 yarn dev
-
-# mock 服务端
-yarn mock
-
 ```
 
+##### 3、启动答题端（C端）
 
-#### 项目规划
-
-- 接入nestjs后端系统。
+```bash
+yarn
+yarn dev
+```

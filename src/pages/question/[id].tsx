@@ -119,8 +119,6 @@ export async function getServerSideProps(context: any) {
   // 根据 id 获取问卷数据
   const data = await getQuestionById(id);
 
-  console.log('data', data);
-
   return {
     props: data,
   };

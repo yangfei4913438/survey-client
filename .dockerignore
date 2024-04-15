@@ -1,0 +1,24 @@
+# files
+*.md
+# not include readme.md
+!README.md
+
+# ides
+.vscode
+.idea
+
+# mac
+.DS_Store
+
+# project
+.env
+.next
+.git
+.husky
+node_modules
+.dockerignore
+.eslintignore
+.eslintrc.js
+.prettierrc.js
+.prettierignore
+LICENSE

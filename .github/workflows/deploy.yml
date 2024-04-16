@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/*'
       - 'src/**'
+      - 'survey-client.conf' # nginx 配置
 
 jobs:
   deploy:

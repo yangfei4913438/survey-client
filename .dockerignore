@@ -22,3 +22,4 @@ node_modules
 .prettierrc.js
 .prettierignore
 LICENSE
+survey-client.conf

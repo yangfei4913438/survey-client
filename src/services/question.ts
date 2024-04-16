@@ -1,6 +1,5 @@
-import {get} from './ajax'
+import { request } from '@/core/ajax';
 
-export async function getQuestionById(id: string) {
-  const url = `/api/question/${id}` // Mock 或服务端
-  return await get(url)
+export async function getQuestionById<T>(id: string) {
+  return await request<T>({ name: 'question', id });
 }

@@ -1,7 +1,6 @@
-import {post} from './ajax'
+import { request } from '@/core/ajax';
 
 // 提交答卷
-export async function postAnswer(answerInfo: any) {
-  const url = '/api/answer'
-  return await post(url, answerInfo)
+export async function postAnswer<T>(answerInfo: any) {
+  return await request<T>({ name: 'answer', data: answerInfo });
 }

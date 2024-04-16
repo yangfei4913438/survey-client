@@ -72,7 +72,7 @@ export default function Question(props: InitProps) {
       })),
     };
 
-    await postAnswer(answer)
+    await postAnswer<{ errno: number }>(answer)
       .then((res) => {
         if (res.errno === 0) {
           router.replace('/success');

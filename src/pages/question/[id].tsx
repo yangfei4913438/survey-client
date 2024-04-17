@@ -87,7 +87,7 @@ export default function Question(props: InitProps) {
 
   return (
     <PageWrapper title={title} desc={desc} js={js} css={css}>
-      <Form form={form} onFinish={onFinish}>
+      <Form className='px-12' form={form} onFinish={onFinish}>
         <Form.Item name={QuestionID} initialValue={id} hidden>
           <Input type={'hidden'} />
         </Form.Item>
